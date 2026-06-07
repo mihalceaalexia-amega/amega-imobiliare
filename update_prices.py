@@ -50,7 +50,7 @@ FALLBACK_PRICES = {
     "nufarul":      1250,
     "cantemir":     1200,
     "grigorescu":   1200,
-    "rogerius":     1100,
+    "rogerius":     1900,
     "decebal":      1100,
     "iosia":        1050,
     "velenta":      1000,

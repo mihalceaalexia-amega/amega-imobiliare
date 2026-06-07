@@ -795,7 +795,7 @@
         var fallback = [
           {label:'Ultracentral',eur_sqm:1700},{label:'Centru',eur_sqm:1500},
           {label:'Nufărul',eur_sqm:1250},{label:'Cantemir',eur_sqm:1200},
-          {label:'Grigorescu',eur_sqm:1200},{label:'Rogerius',eur_sqm:1100},
+          {label:'Grigorescu',eur_sqm:1200},{label:'Rogerius',eur_sqm:1900},
           {label:'Decebal',eur_sqm:1100},{label:'Ioșia',eur_sqm:1050},
           {label:'Velența',eur_sqm:1000},{label:'Episcopia Bihor',eur_sqm:950},
           {label:'Seleuș',eur_sqm:950},{label:'Betfia / Periferie',eur_sqm:880}
@@ -867,8 +867,33 @@
 
     document.getElementById('rez-wa-status').textContent =
       '✅ WhatsApp s-a deschis cu estimarea ta. Un consultant te va contacta în curând!';
+
+    // ── Trimite lead silențios la Netlify (notificare email pentru Amega) ──
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'form-name':  'estimator-lead',
+        'telefon':    tel,
+        'cartier':    cartier,
+        'camere':     camere,
+        'suprafata':  rez.mp + ' mp',
+        'estimare':   '€' + rez.min.toLocaleString('ro-RO') + ' – €' + rez.max.toLocaleString('ro-RO')
+      }).toString()
+    }).catch(function() {}); // eșec silențios — nu bloca WhatsApp-ul
   }
 </script>
+
+<!-- Form Netlify hidden pentru captură lead estimator -->
+<form name="estimator-lead" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+  <input type="hidden" name="form-name" value="estimator-lead" />
+  <input type="text" name="bot-field" />
+  <input type="text" name="telefon" />
+  <input type="text" name="cartier" />
+  <input type="text" name="camere" />
+  <input type="text" name="suprafata" />
+  <input type="text" name="estimare" />
+</form>
 
 <!-- ─── CONTACT ───────────────────────────────────────── -->
 <section id="contact">
