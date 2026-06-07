@@ -1016,15 +1016,34 @@
   const btt = document.getElementById('btt');
   window.addEventListener('scroll', () => btt.classList.toggle('show', scrollY > 400));
 
-  // Netlify form success redirect via JS (optional — Netlify handles this server-side)
+  // Netlify form — submit via fetch (AJAX) ca să evităm redirect-ul spre 404
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function(e) {
-      // Let Netlify handle the POST; show in-page confirmation after a beat
-      setTimeout(() => {
+      e.preventDefault(); // oprește redirect-ul nativ al browser-ului
+
+      var btn = form.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Se trimite...';
+
+      var data = new URLSearchParams(new FormData(form));
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      })
+      .then(function() {
         document.getElementById('formSuccess').style.display = 'block';
         form.reset();
-      }, 600);
+        btn.textContent = '✅ Trimis!';
+        form.querySelector('#formSuccess').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = '📩 Trimite mesajul';
+        alert('A apărut o eroare. Te rugăm să ne contactezi direct la 0740 491 586.');
+      });
     });
   }
 </script>
