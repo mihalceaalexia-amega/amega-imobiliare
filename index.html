@@ -725,6 +725,14 @@
         </div>
       </div>
 
+      <!-- Checkbox GDPR estimator -->
+      <div style="margin-top:12px;">
+        <label class="gdpr-label">
+          <input type="checkbox" id="gdprEstimator" style="width:18px;height:18px;accent-color:#25d366;cursor:pointer;flex-shrink:0;" />
+          <span style="font-size:.87rem;color:var(--text);">Sunt de acord cu <a href="privacy.html" target="_blank" style="color:var(--gold);font-weight:600;">Politica de Confidențialitate</a> și <a href="cookies.html" target="_blank" style="color:var(--gold);font-weight:600;">Politica de Cookies</a>. *</span>
+        </label>
+      </div>
+
       <!-- Buton calcul -->
       <button onclick="calculeazaSiTrimite()" style="width:100%;padding:16px;background:#25d366;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:8px;transition:var(--trans);display:flex;align-items:center;justify-content:center;gap:10px;"
         onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25d366'">
@@ -758,6 +766,13 @@
   }
   .mob-btn.active { background:var(--navy);color:var(--white);border-color:var(--navy); }
   .mob-btn:hover:not(.active) { border-color:var(--gold);color:var(--gold); }
+
+  /* GDPR checkbox label */
+  .gdpr-label {
+    display:flex;align-items:flex-start;gap:10px;cursor:pointer;
+    font-size:.88rem;color:var(--text);line-height:1.5;
+  }
+  .gdpr-label input[type="checkbox"] { margin-top:2px; }
 </style>
 
 <script>
@@ -838,6 +853,11 @@
     if (!tel) {
       alert('Te rugăm să introduci numărul tău de telefon pentru a primi estimarea pe WhatsApp.');
       document.getElementById('e-tel').focus();
+      return;
+    }
+    if (!document.getElementById('gdprEstimator').checked) {
+      alert('Te rugăm să bifezi acordul cu Politica de Confidențialitate și Cookies pentru a continua.');
+      document.getElementById('gdprEstimator').focus();
       return;
     }
 
@@ -980,6 +1000,13 @@
             <textarea id="mesaj" name="mesaj" placeholder="Spune-ne mai multe despre ce cauți sau ce ai de vânzare..."></textarea>
           </div>
 
+          <div class="fg" style="margin-top:4px;">
+            <label class="gdpr-label">
+              <input type="checkbox" id="gdprContact" name="gdpr" required style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;" />
+              <span>Sunt de acord cu <a href="privacy.html" target="_blank" style="color:var(--gold);font-weight:600;">Politica de Confidențialitate</a> și <a href="cookies.html" target="_blank" style="color:var(--gold);font-weight:600;">Politica de Cookies</a>. *</span>
+            </label>
+          </div>
+
           <button type="submit" class="submit-btn">📩 Trimite mesajul</button>
           <p class="form-note">Datele tale sunt în siguranță. Nu trimitem spam.</p>
           <div class="form-success" id="formSuccess">✅ Mesajul a fost trimis! Te contactăm în curând.</div>
@@ -1012,7 +1039,9 @@
           <li><a href="#despre">Despre noi</a></li>
           <li><a href="#testimoniale">Testimoniale</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Politică confidențialitate</a></li>
+          <li><a href="privacy.html">Politică confidențialitate</a></li>
+          <li><a href="termeni.html">Termeni și Condiții</a></li>
+          <li><a href="cookies.html">Politică Cookies</a></li>
         </ul>
       </div>
     </div>
