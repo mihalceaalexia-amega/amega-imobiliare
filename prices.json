@@ -1,0 +1,18 @@
+{
+  "last_updated": "2026-06-01",
+  "note": "Preturi medii €/mp pentru apartamente in Oradea. Actualizat automat lunar.",
+  "cartiere": [
+    {"key": "ultracentral", "label": "Ultracentral",      "eur_sqm": 1700},
+    {"key": "centru",       "label": "Centru",            "eur_sqm": 1500},
+    {"key": "nufarul",      "label": "Nufărul",           "eur_sqm": 1250},
+    {"key": "cantemir",     "label": "Cantemir",          "eur_sqm": 1200},
+    {"key": "grigorescu",   "label": "Grigorescu",        "eur_sqm": 1200},
+    {"key": "rogerius",     "label": "Rogerius",          "eur_sqm": 1100},
+    {"key": "decebal",      "label": "Decebal",           "eur_sqm": 1100},
+    {"key": "iosia",        "label": "Ioșia",             "eur_sqm": 1050},
+    {"key": "velenta",      "label": "Velența",           "eur_sqm": 1000},
+    {"key": "episcopia",    "label": "Episcopia Bihor",   "eur_sqm":  950},
+    {"key": "seleus",       "label": "Seleuș",            "eur_sqm":  950},
+    {"key": "betfia",       "label": "Betfia / Periferie","eur_sqm":  880}
+  ]
+}
