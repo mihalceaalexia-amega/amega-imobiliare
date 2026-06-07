@@ -1,0 +1,34 @@
+name: Actualizare preturi lunara
+
+on:
+  schedule:
+    - cron: '0 7 1 * *'
+  workflow_dispatch:
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Seteaza Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instaleaza dependinte
+        run: pip install requests beautifulsoup4
+      - name: Ruleaza scriptul de actualizare
+        run: python update_prices.py
+      - name: Commit si push
+        run: |
+          git config --local user.email "prices-bot@amega-imobiliare.ro"
+          git config --local user.name "Amega Price Bot"
+          git add prices.json
+          if git diff --staged --quiet; then
+            echo "Nicio modificare."
+          else
+            git commit -m "Actualizare preturi $(date '+%B %Y')"
+            git push
+          fi
